@@ -39,11 +39,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
-# Project
-/vendor
-
 # Bin
 /bin
 kcm
 klogo
+/vendor

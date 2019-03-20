@@ -1,4 +1,4 @@
-module github.com/mchmarny/kcm
+module github.com/mchmarny/klogo
 
 require (
 	cloud.google.com/go v0.35.1
@@ -10,7 +10,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/stretchr/testify v1.3.0
 	github.com/ugorji/go/codec v0.0.0-20190128213124-ee1426cffec0 // indirect
-	golang.org/x/net v0.0.0-20190125091013-d26f9f9a57f3
+	golang.org/x/net v0.0.0-20190125091013-d26f9f9a57f3 // indirect
 	golang.org/x/oauth2 v0.0.0-20190130055435-99b60b757ec1 // indirect
 	golang.org/x/sys v0.0.0-20190201152629-afcc84fd7533 // indirect
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect

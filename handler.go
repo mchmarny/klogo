@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"github.com/mchmarny/klogo/message"
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,7 +16,7 @@ func requestHandler(c *gin.Context) {
 
 
 	// bind
-	var req ServiceRequest
+	var req message.LogoRequest
     err := c.BindJSON(&req)
     if err != nil {
 		log.Printf("Error while binding request: %v", err)
@@ -40,9 +41,8 @@ func requestHandler(c *gin.Context) {
 		return
 	}
 
-	resp := &ServiceResponse{
-		ID: req.ID,
-		ImageURL: req.ImageURL,
+	resp := &message.LogoResponse{
+		Request: req,
 		Description: desc,
 	}
 
@@ -57,7 +57,7 @@ func requestHandler(c *gin.Context) {
 func defaultHandler(c *gin.Context) {
 
 	// sample request
-	req := &ServiceRequest{
+	req := &message.LogoRequest{
 		ID: "sample-id",
 		ImageURL: "https://storage.googleapis.com/kdemo-logos/0.png",
 	}

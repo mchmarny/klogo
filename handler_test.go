@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"bytes"
 
+	"github.com/mchmarny/klogo/message"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 )
@@ -20,7 +21,7 @@ func setupRouter() *gin.Engine {
 
 func TestRestHandler(t *testing.T) {
 
-	q := &ServiceRequest{
+	q := &message.LogoRequest{
 		ID: "test",
 		ImageURL: "https://storage.googleapis.com/kdemo-logos/0.png",
 	}

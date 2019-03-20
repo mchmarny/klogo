@@ -8,10 +8,10 @@ COPY . /src/
 # dependancies
 WORKDIR /src/
 ENV GO111MODULE=on
-RUN go mod download
+RUN go mod tidy
 
 # build
-WORKDIR /src/cmd/
+WORKDIR /src/
 RUN CGO_ENABLED=0 go build -v -o /klogo
 
 
