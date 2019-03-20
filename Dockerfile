@@ -2,7 +2,7 @@
 FROM golang:latest as build
 
 # copy
-WORKDIR /go/src/github.com/mchmarny/kcm/
+WORKDIR /go/src/github.com/mchmarny/klogo/
 COPY . /src/
 
 # dependancies
@@ -12,7 +12,7 @@ RUN go mod download
 
 # build
 WORKDIR /src/cmd/
-RUN CGO_ENABLED=0 go build -v -o /kcm
+RUN CGO_ENABLED=0 go build -v -o /klogo
 
 
 # RUN STAGE
@@ -20,9 +20,9 @@ FROM alpine as release
 RUN apk add --no-cache ca-certificates
 
 # app executable
-COPY --from=build /kcm /app/kcm
+COPY --from=build /klogo /app/klogo
 
 # run
 WORKDIR /app/
-ENTRYPOINT ["./kcm"]
+ENTRYPOINT ["./klogo"]
 

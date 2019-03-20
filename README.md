@@ -17,6 +17,9 @@
 curl -H "Content-Type: application/json" -X GET \
 		"https://twfeel.demo.knative.tech/v1/feel/knative?token=${TW_FEEL_TOKEN}" \
 		| jq "."
+
+
+curl -d '{ "id": "test", "url": "https://storage.googleapis.com/kdemo-logos/0.png" }' -H "Content-Type: application/json" -X POST http://localhost:8080/
 ```
 
 ### Hangouts Chat

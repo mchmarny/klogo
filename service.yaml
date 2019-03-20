@@ -1,0 +1,17 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: klogo
+spec:
+  runLatest:
+    configuration:
+      revisionTemplate:
+        spec:
+          container:
+            image: gcr.io/s9-demo/klogo:latest
+            env:
+            - name: RELEASE
+              value: "v0.0.1"
+            - name: GIN_MODE
+              value: "release"
+

@@ -42,3 +42,8 @@ Temporary Items
 
 # Project
 /vendor
+
+# Bin
+/bin
+kcm
+klogo

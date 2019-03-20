@@ -1,12 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"net/http"
 	"os"
-
-	"github.com/mchmarny/kcm/pkg/handler"
+	"fmt"
 
 	"github.com/gin-gonic/gin"
 
@@ -20,16 +17,15 @@ const (
 
 func main() {
 
-	log.Print("Initializing API server...")
-
 	// router
 	r := gin.New()
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 
 	// root & health
-	r.GET("/", handler.RestHandler)
-	r.GET("/health", defaultHandler)
+	r.GET("/", defaultHandler)
+	r.POST("/", requestHandler)
+	r.GET("/health", healthHandler)
 
 	// port
 	port := os.Getenv(portVariableName)
@@ -43,8 +39,4 @@ func main() {
 		log.Fatal(err)
 	}
 
-}
-
-func defaultHandler(c *gin.Context) {
-	c.String(http.StatusOK, "OK")
 }
