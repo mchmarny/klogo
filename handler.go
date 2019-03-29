@@ -31,7 +31,7 @@ func requestHandler(c *gin.Context) {
 
 
 	// process
-	desc, err := getLogoFromUrl(req.ImageURL)
+	desc, err := getLogoFromURL(req.ImageURL)
 	if err != nil {
 		log.Printf("Error while getting logo: %v", err)
 		c.JSON(http.StatusBadRequest, gin.H{

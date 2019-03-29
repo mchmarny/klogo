@@ -7,8 +7,8 @@ import (
 	vision "cloud.google.com/go/vision/apiv1"
 )
 
-// Process processes passed URL and returns map of attributes
-func getLogoFromUrl(url string) (desc string, err error) {
+// getLogoFromURL processes passed URL and returns map of attributes
+func getLogoFromURL(url string) (desc string, err error) {
 
 	ctx := context.Background()
 	client, e := vision.NewImageAnnotatorClient(ctx)

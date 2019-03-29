@@ -10,7 +10,7 @@ func TestIsValidAccessToken(t *testing.T) {
 
 	url := "https://storage.googleapis.com/kdemo-logos/0.png"
 
-	desc, err := getLogoFromUrl(url)
+	desc, err := getLogoFromURL(url)
 
 	assert.Nil(t, err)
 	assert.NotEmpty(t, desc)
