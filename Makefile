@@ -14,14 +14,14 @@ image:
 	go mod vendor
 	gcloud builds submit \
 		--project ${GCP_PROJECT} \
-		--tag gcr.io/${GCP_PROJECT}/klogo:latest
+		--tag gcr.io/${GCP_PROJECT}/klogo
 
 image-sample:
 	go mod tidy
 	go mod vendor
 	gcloud builds submit \
 		--project knative-samples \
-		--tag gcr.io/knative-samples/klogo:latest
+		--tag gcr.io/knative-samples/klogo
 
 service:
 	kubectl apply -f service.yaml
