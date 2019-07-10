@@ -2,8 +2,8 @@ apiVersion: serving.knative.dev/v1alpha1
 kind: Service
 metadata:
   name: klogo
-  labels:
-    # serving.knative.dev/visibility: cluster-local
+  # labels:
+  #   serving.knative.dev/visibility: cluster-local
 spec:
   runLatest:
     configuration:
@@ -11,8 +11,3 @@ spec:
         spec:
           container:
             image: gcr.io/knative-samples/klogo:latest
-            env:
-            - name: RELEASE
-              value: "v0.0.5"
-            - name: GIN_MODE
-              value: "release"
