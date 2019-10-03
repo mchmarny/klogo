@@ -2,41 +2,36 @@ package main
 
 import (
 	"log"
+	"net"
+	"net/http"
 	"os"
-	"fmt"
 
 	"github.com/gin-gonic/gin"
 
-
+	ev "github.com/mchmarny/gcputil/env"
+	pj "github.com/mchmarny/gcputil/project"
 )
 
-const (
-	defaultPort      = "8080"
-	portVariableName = "PORT"
+var (
+	logger    = log.New(os.Stdout, "", 0)
+	projectID = pj.GetIDOrFail()
+	port      = ev.MustGetEnvVar("PORT", "8080")
 )
 
 func main() {
 
-	// router
 	r := gin.New()
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 
-	// root & health
 	r.GET("/", defaultHandler)
 	r.POST("/", requestHandler)
 	r.GET("/health", healthHandler)
 
-	// port
-	port := os.Getenv(portVariableName)
-	if port == "" {
-		port = defaultPort
-	}
+	hostPort := net.JoinHostPort("0.0.0.0", port)
 
-	addr := fmt.Sprintf(":%s", port)
-	log.Printf("Server starting: %s \n", addr)
-	if err := r.Run(addr); err != nil {
-		log.Fatal(err)
+	if err := http.ListenAndServe(hostPort, nil); err != nil {
+		logger.Fatal(err)
 	}
 
 }

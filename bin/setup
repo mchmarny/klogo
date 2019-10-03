@@ -1,0 +1,30 @@
+#!/bin/bash
+
+DIR="$(dirname "$0")"
+. "${DIR}/config"
+
+# Required services
+gcloud services enable --quiet \
+    compute.googleapis.com \
+    cloudbuild.googleapis.com \
+    iam.googleapis.com \
+    vision.googleapis.com \
+    run.googleapis.com
+
+# Account
+gcloud iam service-accounts create "${SERVICE_NAME}-sa" \
+    --display-name "Service Invoker Account for ${SERVICE_NAME}" \
+    --quiet
+
+gcloud beta run services add-iam-policy-binding $SERVICE_NAME \
+	--member="serviceAccount:${SERVICE_NAME}-sa@${PROJECT}.iam.gserviceaccount.com" \
+	--region="${SERVICE_REGION}" \
+	--role=roles/run.invoker
+
+gcloud projects add-iam-policy-binding $PROJECT \
+	--member "serviceAccount:${SERVICE_NAME}-sa@${PROJECT}.iam.gserviceaccount.com" \
+    --role roles/logging.logWriter
+
+gcloud projects add-iam-policy-binding $PROJECT \
+	--member "serviceAccount:${SERVICE_NAME}-sa@${PROJECT}.iam.gserviceaccount.com" \
+    --role roles/cloudtrace.agent

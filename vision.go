@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"log"
 
 	vision "cloud.google.com/go/vision/apiv1"
 )
@@ -23,10 +22,10 @@ func getLogoFromURL(url string) (desc string, err error) {
 	}
 
 	if len(annotations) == 0 {
-		log.Printf("No logo desc found for: %s", url)
+		logger.Printf("No logo desc found for: %s", url)
 		return "", nil
 	}
 
-	log.Println("Found logos:")
+	logger.Println("Found logos:")
 	return annotations[0].Description, nil
 }
