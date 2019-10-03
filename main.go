@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 	"net"
-	"net/http"
 	"os"
 
 	"github.com/gin-gonic/gin"
@@ -22,16 +21,18 @@ func main() {
 
 	gin.SetMode(gin.ReleaseMode)
 
-	r := gin.New()
+	r := gin.Default()
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 
 	r.GET("/", defaultHandler)
 	r.POST("/", requestHandler)
 	r.GET("/health", healthHandler)
+	r.NoRoute(defaultHandler)
 
 	hostPort := net.JoinHostPort("0.0.0.0", port)
-	if err := http.ListenAndServe(hostPort, nil); err != nil {
+	logger.Printf("Starting server: %v", hostPort)
+	if err := r.Run(hostPort); err != nil {
 		logger.Fatal(err)
 	}
 

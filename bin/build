@@ -11,4 +11,4 @@ go mod vendor
 go build -a -tags netgo \
     -ldflags '-s -w -extldflags "-static"' \
     -mod vendor \
-    -o app
+    -o klogo

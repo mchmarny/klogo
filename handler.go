@@ -51,6 +51,8 @@ func requestHandler(c *gin.Context) {
 // defaultHandler handles the root query
 func defaultHandler(c *gin.Context) {
 
+	logger.Println("Default handler...")
+
 	// sample request
 	req := &message.LogoRequest{
 		ID:       "sample-id",
