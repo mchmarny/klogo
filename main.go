@@ -20,6 +20,8 @@ var (
 
 func main() {
 
+	gin.SetMode(gin.ReleaseMode)
+
 	r := gin.New()
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
@@ -29,7 +31,6 @@ func main() {
 	r.GET("/health", healthHandler)
 
 	hostPort := net.JoinHostPort("0.0.0.0", port)
-
 	if err := http.ListenAndServe(hostPort, nil); err != nil {
 		logger.Fatal(err)
 	}

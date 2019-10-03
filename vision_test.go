@@ -8,7 +8,7 @@ import (
 
 func TestIsValidAccessToken(t *testing.T) {
 
-	url := "https://storage.googleapis.com/kdemo-logos/0.png"
+	url := "https://storage.googleapis.com/kdemo-logos/youtube.jpg"
 
 	desc, err := getLogoFromURL(url)
 

@@ -23,7 +23,7 @@ func TestRestHandler(t *testing.T) {
 
 	q := &message.LogoRequest{
 		ID:       "test",
-		ImageURL: "https://storage.googleapis.com/kdemo-logos/0.png",
+		ImageURL: "https://storage.googleapis.com/kdemo-logos/youtube.jpg",
 	}
 
 	b, err := json.Marshal(q)

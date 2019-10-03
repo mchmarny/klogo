@@ -6,8 +6,8 @@ test:
 
 query:
 	curl -H "Content-Type: application/json" \
-		-d '{ "id": "test", "url": "https://storage.googleapis.com/kdemo-logos/0.png" }' \
-		-X POST https://klogo.demo.knative.tech/
+		-d '{ "id": "test", "url": "https://storage.googleapis.com/kdemo-logos/youtube.jpg" }' \
+		-X POST https://logo.demo.knative.tech/
 
 image:
 	go mod tidy
