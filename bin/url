@@ -7,4 +7,4 @@ DIR="$(dirname "$0")"
 gcloud beta run services describe $SERVICE_NAME \
     --region $SERVICE_REGION \
     --platform managed \
-    --format "value(status.domain)"
+    --format "value(status.url)"
